@@ -1,3 +1,22 @@
+<style lang="scss">
+$color: rgba(11, 114, 2, 0.877);
+.dimensional_text {
+  font-size: 8em;
+  font-weight: bold;
+  color: #099217;
+  text-shadow: 0px 5px 0px $color, 0px 7px 0px $color, 0px 8px 0px $color,
+    0px 9px 0px $color, 0px 10px 0px $color, 0px 11px 0px $color,
+    0px 12px 0px $color, 0px 13px 0px $color, 0px 14px 0px $color,
+    0px 15px 0px $color, 0px 16px 0px $color, 0px 17px 0px $color,
+    0px 18px 0px $color, 0px 19px 0px $color, 0px 20px 0px $color,
+    0px 21px 0px $color, 0px 22px 0px $color, 0px 23px 0px $color,
+    0px 24px 0px $color, 0px 25px 0px $color, 0px 26px 0px $color,
+    0px 27px 0px $color, 0px 28px 0px $color, 0px 29px 0px $color,
+    0px 30px 0px $color, 0px 31px 0px $color, 0px 32px 0px $color,
+    0px 33px 0px $color, 0px 34px 0px $color, 0px 35px 0px $color;
+}
+</style>
+
 <template>
   <div class="home">
     <h1>word 预览</h1>
@@ -8,6 +27,8 @@
     <input type="file" @input="onChangeExcelUpload" />
     <div>keys: {{ excelKeys }}</div>
     <div>{{ excelData }}</div>
+    <hr>
+
   </div>
 </template>
 
@@ -24,7 +45,8 @@ export default {
       vHtml: '',
       wordURL: '', //文件地址,
       excelData: {},
-      excelKeys: []
+      excelKeys: [],
+      textInput: '秦凯'
     }
   },
   setup() {

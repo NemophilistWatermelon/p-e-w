@@ -1,0 +1,109 @@
+// 主题背景颜色
+$main-bg-color: rgba(0, 0, 0, .5);
+// 螺旋桨边框颜色
+$screw-color: rgb(44, 62, 80);
+// 机翼背景颜色
+$wing-color: rgb(44, 62, 80);
+// 推进器背景颜色
+$engine-body: rgba(255, 255, 255, .5);
+
+
+
+
+.grid-container {
+  display: grid;
+  position: relative;
+  place-items: center;
+  height: 100vh;
+  background-color: $main-bg-color;
+
+  .vue-text {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    animation: _rotateAni 1s infinite steps(990) ;
+
+    .v {
+      width: 10px;
+      height: 90px;
+      background-color: #000;
+      box-shadow: 0 0 3px 0 #eee;
+      border: 10px solid $screw-color;
+      border-radius: 0 24px 0 0;
+
+      &.l {
+        margin-top: 10px;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+
+  .vue-wing {
+    position: absolute;
+    width: 200px;
+    height: 130px;
+    left: 40%;
+    top: 70%;
+    background-color: $wing-color;
+    transform: translate(-50%, -50%) perspective(100px) rotateX(10deg) skew(-50deg);
+    animation: _wingAni .4s infinite ease-out;
+    border-radius: 30%;
+
+    &.right {
+      left: 60%;
+      transform: translate(-50%, -50%) perspective(100px) rotateX(-180deg) skew(-50deg);
+    }
+  }
+
+  .he-suan-wrap {
+    overflow: hidden;
+    position: fixed;
+    padding: 10px;
+    backdrop-filter: saturate(50%) blur(8px);
+    background-color: $engine-body;
+    transform:  perspective(100px) rotateX(14deg);
+    border: 10px solid;
+    border-radius: 50% 50% 3px 3px;
+    animation: _wingBody 1s infinite ease-out;
+  }
+}
+
+
+@keyframes _rotateAni  {
+  0% {
+    transform: translate(-50%, -50%)  perspective(100px)   skew(360deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform:  translate(-50%, -50%) perspective(100px)  skew(360deg) rotateZ(360deg);
+  }
+}
+
+@keyframes _wingAni {
+  0% {
+    top: 70%;
+  }
+
+  50% {
+    top: 69%;
+  }
+
+  100% {
+    top: 70%;
+  }
+}
+
+@keyframes _wingBody {
+  0% {
+    top: 35%;
+  }
+
+  50% {
+    top: 36%;
+  }
+
+  100% {
+    top: 35%;
+  }
+}
