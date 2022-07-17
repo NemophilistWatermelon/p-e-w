@@ -14,13 +14,25 @@
     <button @click="onUpload">开始上传</button>
   </p>
 
-  <video autoplay  v-show="videoShow" controls src="" ref="video"></video>
+  <div
+    style="width:400px;height:300px"
+  >
+    <video
+      style="width:100%; height: 100%"
+      autoplay
+      v-if="videoSrc"
+      controls
+      :src="videoSrc"
+      ref="video">
+    </video>
+  </div>
+
 </div>
 </template>
 
 <script>
 import axios from 'axios'
-const CHUNK_SIZE = 10 * 1024
+const CHUNK_SIZE = 64 * 1024
 // eslint-disable-next-line no-unused-vars
 const UPLOAD_PATH = 'http://localhost:3000/upload/video'
 
@@ -31,7 +43,8 @@ export default {
   data () {
     return {
       fileData: [],
-      videoShow: false
+      videoShow: false,
+      videoSrc: ''
     }
   },
 
@@ -45,9 +58,7 @@ export default {
     },
 
     createVideoUrl (o) {
-      const oVideo = this.$refs.video
-      this.videoShow = true
-      oVideo.src = o.url
+      this.videoSrc = o.src
     },
 
     async createFileChunk (file, size = CHUNK_SIZE) {
@@ -68,7 +79,6 @@ export default {
         }
         const form = this.uploadFormBody(o)
         try {
-          await this.delay(50)
           result = await this.uploadAction(form)
         } catch (e) {
           console.log('错了' + e)
@@ -77,7 +87,9 @@ export default {
         oProgress.value = cur
       }
       console.log('上传完毕', result)
-      // this.createVideoUrl(result.data)
+      this.createVideoUrl({
+        src: result.data.url
+      })
     },
 
     async uploadAction (formBody) {

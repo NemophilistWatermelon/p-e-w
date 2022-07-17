@@ -41,18 +41,19 @@ $engine-body: rgba(255, 255, 255, .5);
 
   .vue-wing {
     position: absolute;
-    width: 200px;
-    height: 130px;
+    width: 96px;
+    height: 80px;
     left: 40%;
-    top: 70%;
+    top: 66%;
     background-color: $wing-color;
     transform: translate(-50%, -50%) perspective(100px) rotateX(10deg) skew(-50deg);
-    animation: _wingAni .4s infinite ease-out;
+    animation: _wingAni 5s infinite ease-out;
     border-radius: 30%;
 
     &.right {
       left: 60%;
       transform: translate(-50%, -50%) perspective(100px) rotateX(-180deg) skew(-50deg);
+      animation: _wingAniRight 5s infinite ease-out;
     }
   }
 
@@ -64,7 +65,7 @@ $engine-body: rgba(255, 255, 255, .5);
     background-color: $engine-body;
     transform:  perspective(100px) rotateX(14deg);
     border: 10px solid;
-    border-radius: 50% 50% 3px 3px;
+    border-radius: 38% 44% 100% 94%;
     animation: _wingBody 1s infinite ease-out;
   }
 }
@@ -81,16 +82,54 @@ $engine-body: rgba(255, 255, 255, .5);
 }
 
 @keyframes _wingAni {
+  // 0% {
+  //   top: 70%;
+  // }
+
+  // 50% {
+  //   top: 69%;
+  // }
+
+  // 100% {
+  //   top: 70%;
+  // }
+
   0% {
-    top: 70%;
+    transform: translate(-50%, -50%) perspective(100px) rotateX(10deg) skew(-50deg);
   }
 
   50% {
-    top: 69%;
+    transform: translate(-50%, -50%) perspective(100px) rotateX(50deg) skew(-50deg);
   }
 
   100% {
-    top: 70%;
+    transform: translate(-50%, -50%) perspective(100px) rotateX(10deg) skew(-50deg);
+  }
+}
+
+@keyframes _wingAniRight {
+  // 0% {
+  //   top: 70%;
+  // }
+
+  // 50% {
+  //   top: 69%;
+  // }
+
+  // 100% {
+  //   top: 70%;
+  // }
+
+  0% {
+    transform: translate(-50%, -50%) perspective(100px) rotateX(-160deg) skew(-50deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) perspective(100px) rotateX(-120deg) skew(-50deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) perspective(100px) rotateX(-160deg) skew(-50deg);
   }
 }
 
